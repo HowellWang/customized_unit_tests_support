@@ -1,0 +1,18 @@
+# OS specific files
+.DS_Store
+
+# IDEs & others
+.idea*
+
+# Build Objects & Caches
+*.py[cod]
+dist/
+sdist/
+
+.cache/
+
+*/__pycache__
+*_pycache__/
+
+# Virtual environments
+venv/
