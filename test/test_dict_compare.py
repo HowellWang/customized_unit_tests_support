@@ -18,15 +18,15 @@ class DictCompareTestCase(unittest.TestCase):
         except AssertionError:
             self.assertTrue(is_same_dict(d1, d2))
 
-    def test_add(self):
+    def test_complexity(self):
         d1 = dict(a='foo', b=1, c=[1, 2, 3])
         self.assertFalse(is_same_dict(d1, dict()))
 
-    def test_depth(self):
+    def test_deep_dict(self):
         d1 = dict(a=dict(b=dict(c="c1", d="d1")))
         self.assertFalse(is_same_dict(d1, dict(a=dict(b=dict(c="c1")))))
 
-    def test_compare_dicts(self):
+    def test_list_value_mixed_with_different_type(self):
         d1 = dict(a=['andy', 'john', dict(rel='brothers')])
         d2 = dict(a=['john', 'andy', dict(rel='brothers')])
         self.assertFalse(is_same_dict(d1, d2))

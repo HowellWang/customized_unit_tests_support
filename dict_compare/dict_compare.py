@@ -29,9 +29,9 @@ def is_same_dict(dict1, dict2):
 
     if dict1 == dict2:
         return True
-
     if set(dict1.keys()) != set(dict2.keys()):
         return False
+
     for k, v1 in sorted(dict1.items()):
         v2 = dict2[k]
         if v1 != v2:
