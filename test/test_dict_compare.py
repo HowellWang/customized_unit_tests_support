@@ -18,6 +18,14 @@ class DictCompareTestCase(unittest.TestCase):
         except AssertionError:
             self.assertTrue(is_same_dict(d1, d2))
 
+    def test_dict_with_complicated_list_value(self):
+        d1 = dict(a=dict(b=[1, 2]), c=['test1', 'test2'])
+        d2 = dict(a=dict(b=[2, 1]), c=['test2', 'test1'])
+        try:
+            self.assertEqual(d1, d2)
+        except AssertionError:
+            self.assertTrue(is_same_dict(d1, d2))
+
     def test_complexity(self):
         d1 = dict(a='foo', b=1, c=[1, 2, 3])
         self.assertFalse(is_same_dict(d1, dict()))
