@@ -1,32 +1,39 @@
 from collections import Counter
 
 
+def is_same_list(l1, l2):
+    """ Recursively compare the two lists.
+    :param l1: First list
+    :param l2: Second list
+    :return: True if the lists match
+    """
+    is_match = False
+    try:
+        if Counter(l1) == Counter(l2):
+            return True
+    except TypeError:
+        compare_res = [i for i in l1 if i not in l2]
+        if not compare_res:
+            return True
+    if len(l1) == len(l2) and len(l1) > 0:
+        for v1e, v2e in zip(l1, l2):
+            is_match = v1e == v2e
+            if not is_match:
+                if isinstance(v1e, dict) and isinstance(v2e, dict):
+                    is_match = is_same_dict(v1e, v2e)
+                elif isinstance(v1e, list) and isinstance(v2e, list):
+                    is_match = is_same_list(v1e, v2e)
+            if not is_match:
+                return is_match
+    return is_match
+
+
 def is_same_dict(dict1, dict2):
     """ Recursively compare the two dictionaries.
     :param dict1: First dictionary
     :param dict2: Second dictionary
     :return: True if the dictionaries match
     """
-
-    def is_same_list(l1, l2):
-        is_match = False
-        try:
-            if Counter(l1) == Counter(l2):
-                return True
-        except TypeError:
-            pass
-        if len(l1) == len(l2) and len(l1) > 0:
-            for v1e, v2e in zip(l1, l2):
-                is_match = v1e == v2e
-                if not is_match:
-                    if isinstance(v1e, dict) and isinstance(v2e, dict):
-                        is_match = is_same_dict(v1e, v2e)
-                    elif isinstance(v1e, list) and isinstance(v2e, list):
-                        is_match = is_same_list(v1e, v2e)
-                if not is_match:
-                    return is_match
-        return is_match
-
     if dict1 == dict2:
         return True
     if set(dict1.keys()) != set(dict2.keys()):
